@@ -190,7 +190,7 @@ jobs:
           sudo tar -cJvf "${artifact_name}.tar.xz" "Server"
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.build.outputs.artifact_name }}
           path: docker/build/Output/${{ steps.vars.outputs.build_config }}/${{ steps.build.outputs.artifact_name }}.tar.xz
@@ -288,7 +288,7 @@ jobs:
     #         mv ~/.conan/data docker/conan
 
     # - name: Upload build artifacts
-    #   uses: actions/upload-artifact@v3
+    #   uses: actions/upload-artifact@v4
     #   with:
     #     name: open.mp-linux-${{ matrix.arch }}${{ matrix.ssl == 'dynamic' && '-dynssl' || '' }}-${{ steps.vars.outputs.build_version }}
     #     path: build/Output/${{ steps.vars.outputs.build_config }}/Server
