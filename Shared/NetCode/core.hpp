@@ -156,7 +156,7 @@ namespace RPC
 		uint32_t Multiplier;
 		uint32_t LagCompensation;
 		HybridString<64> ServerName;
-		StaticArray<uint8_t, MAX_VEHICLE_MODELS> VehicleModels;
+		StaticArray<uint8_t, 212> VehicleModels;
 		bool EnableVehicleFriendlyFire;
 
 		bool read(NetworkBitStream& bs)
