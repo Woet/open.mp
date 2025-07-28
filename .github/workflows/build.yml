@@ -114,7 +114,7 @@ jobs:
           powershell -NoLogo -NoProfile -Command Compress-Archive -DestinationPath "${artifact_name}.zip" -Path "Server"
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.build.outputs.artifact_name }}
           path: build/Output/${{ steps.vars.outputs.build_config }}/${{ steps.build.outputs.artifact_name }}.zip
