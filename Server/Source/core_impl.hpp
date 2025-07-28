@@ -1266,8 +1266,20 @@ private:
 		playerInitRPC.SetSpawnInfoCount = classes ? classes->count() : 0;
 		playerInitRPC.PlayerID = player.getID();
 		IVehiclesComponent* vehicles = components.queryComponent<IVehiclesComponent>();
-		static const StaticArray<uint8_t, 212> emptyModels { 0 };
-		playerInitRPC.VehicleModels = vehicles ? vehicles->models() : emptyModels;
+
+		StaticArray<uint8_t, 212> tempModels;
+
+		if (vehicles) {
+		    const auto& src = vehicles->models();
+		    for (size_t i = 0; i < 212; ++i) {
+		        tempModels[i] = src[i];
+		    }
+		} else {
+		    tempModels.fill(0); // or use `{0}` if your type allows
+		}
+		
+		playerInitRPC.VehicleModels = tempModels;
+				
 		playerInitRPC.EnableVehicleFriendlyFire = *EnableVehicleFriendlyFire;
 		PacketHelper::send(playerInitRPC, player);
 
